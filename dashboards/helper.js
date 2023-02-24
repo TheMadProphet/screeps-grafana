@@ -6,7 +6,7 @@ const dashboardFileNames = [
   'stats',
   'serverStats',
   'adminUtilsServerStats',
-  'grafana',
+  'myStats',
 ];
 
 function setupDashboard(dashboard) {

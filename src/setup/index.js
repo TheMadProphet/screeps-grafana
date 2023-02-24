@@ -74,6 +74,22 @@ class GrafanaInitializer {
     }
   }
 
+  static async SetupMyStatsDashboard() {
+    const type = 'My-Stats';
+    try {
+      const dashboard = dashboards.myStats;
+      await axios({
+        url: `${grafanaApiUrl}/dashboards/db`,
+        method: 'post',
+        auth: adminLogin,
+        data: dashboard,
+      });
+      handleSuccess(type);
+    } catch (err) {
+      handleError(type, err);
+    }
+  }
+
   static async SetupServerStatsDashboard() {
     const type = 'Server-Stats';
     try {
@@ -127,11 +143,13 @@ class GrafanaInitializer {
       case 'private':
         await this.SetupAdminUtilsServerStatsDashboard();
         await this.SetupStatsDashboard();
+        await this.SetupMyStatsDashboard();
         await this.SetupServerStatsDashboard();
         break;
       case 'mmo':
         await this.SetupAdminUtilsServerStatsDashboard();
         await this.SetupStatsDashboard();
+        await this.SetupMyStatsDashboard();
         break;
       default:
         break;
