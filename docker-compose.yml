@@ -1,0 +1,81 @@
+version: "3.5"
+
+volumes:
+  grafana_data:
+  go-carbon_data:
+
+services:
+  stats-getter:
+     build:
+          context: .
+          dockerfile: ./src/pushStats/Dockerfile
+     volumes:
+      - ./logs/statsGetter:/app/logs
+     depends_on:
+      - carbon-relay-ng
+     environment:
+      - DISABLE_PUSHGATEWAY=false
+      - SERVER_PORT=21025
+      - INCLUDE_PUSH_STATUS_API=false
+  carbon-relay-ng:
+    image: grafana/carbon-relay-ng
+    depends_on:
+      - go-carbon
+    volumes:
+      - ./grafanaConfig/carbon-relay-ng:/conf
+    ports:
+      - 2003:2003
+    healthcheck:
+      test: nc -zv go-carbon:2003
+      interval: 10s
+      timeout: 1s
+      retries: 3
+  go-carbon:
+    image: ghcr.io/go-graphite/go-carbon
+    volumes:
+      - ./grafanaConfig/go-carbon/go-carbon.conf:/etc/go-carbon/go-carbon.conf
+      - ./grafanaConfig/go-carbon:/conf
+      - ./go-carbon-storage:/graphite
+      - ./logs/goCarbon:/log
+  carbon-api:
+    image: pieterbrandsen/carbonapi-0.15.6
+    volumes:
+      - ./grafanaConfig/carbonapi/carbonapi.yml:/etc/carbonapi.yml
+      - ./grafanaConfig/carbonapi:/conf:ro
+      - ./logs/carbonApi:/log
+    depends_on:
+      - go-carbon
+    healthcheck:
+      test: "curl -fsSL -o /dev/null http://go-carbon:8080/lb_check"
+      interval: 10s
+      timeout: 1s
+      retries: 3
+  grafana:
+    image: grafana/grafana-oss:9.3.6-ubuntu
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafanaConfig/grafana:/etc/grafana
+      - ./logs/grafana:/var/log/grafana
+    ports:
+      - 3000:3000
+    # expose:
+    #   - 3000:3000
+    healthcheck:
+      test: "curl -fsSL -o /dev/null http://localhost:3000/login"
+      interval: 10s
+      timeout: 1s
+      retries: 3
+    # labels:
+    #       - "traefik.http.routers.my_custom_image.rule=Host(`my_custom_image.whatever.localhost`)"
+    #       - "traefik.http.services.my_custom_image.loadbalancer.server.port=3000"
+  # traefik:
+  #   image: traefik:v2.4
+  #   command:
+  #     - --api.insecure=true
+  #     - --providers.docker=true
+  #     - --entrypoints.web.address=:80
+  #   ports:
+  #     - "80:80"
+  #     - "8080:8080"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
