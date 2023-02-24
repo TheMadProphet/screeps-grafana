@@ -1,0 +1,11 @@
+# Folders
+
+node_modules
+grafanaConfig
+go-carbon-storage/
+
+## File types
+
+**/*.log
+.eslintrc.js
+**/*.md
