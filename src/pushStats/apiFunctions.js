@@ -187,6 +187,7 @@ export default class {
 
   static async getMemory(info, shard, statsPath = 'stats') {
     const options = await getRequestOptions(info, `/api/user/memory?path=${statsPath}&shard=${shard}`, 'GET');
+    console.log("RETRIEVE: Memory", new Date().toLocaleDateString());
     const res = await req(options);
     if (!res) return undefined;
     const data = await gz(res.data);
