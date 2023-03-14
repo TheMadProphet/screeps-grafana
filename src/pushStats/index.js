@@ -180,7 +180,7 @@ const groupedUsers = users.reduce((group, user) => {
   return group;
 }, {});
 
-cron.schedule('*/30 * * * * *', async () => {
+cron.schedule('*/1 * * * *', async () => {
   const message = `Cron event hit: ${new Date()}`;
   console.log(`\r\n${message}`);
   cronLogger.info(message);
