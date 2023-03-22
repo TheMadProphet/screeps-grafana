@@ -85,6 +85,13 @@ class GrafanaInitializer {
         data: dashboard,
       });
       handleSuccess(type);
+
+      await axios({
+          url: `${grafanaApiUrl}/user/preferences`,
+          method: 'put',
+          auth: adminLogin,
+          data: {homeDashboardId: 8}
+      })
     } catch (err) {
       handleError(type, err);
     }
