@@ -29,10 +29,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -95,10 +92,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -238,10 +232,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -304,10 +295,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -367,10 +355,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -608,10 +593,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -639,7 +621,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -704,10 +686,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -800,10 +779,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -929,10 +905,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -960,7 +933,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1025,10 +998,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1209,7 +1179,7 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "screeps.stats.$Users.$Shards.roomStats.storageEnergy"
+          "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.storageEnergy, 'Storage Energy', false)"
         },
         {
           "datasource": {
@@ -1218,7 +1188,7 @@
           },
           "refCount": 0,
           "refId": "B",
-          "target": "alias(movingAverage(screeps.stats.$Users.$Shards.roomStats.storageEnergy, '10min'), 'MA')"
+          "target": "alias(movingAverage(screeps.stats.$Users.$Shards.rooms.$Rooms.storageEnergy, '10min'), 'Moving Average')"
         }
       ],
       "title": "Storage Energy",
@@ -1582,96 +1552,7 @@
       "type": "timeseries"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {},
-      "editable": true,
-      "error": false,
-      "fill": 0,
-      "fillGradient": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 0,
-        "y": 38
-      },
-      "hiddenSeries": false,
-      "id": 23,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.3.6",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "P1D261A8554D2DA69"
-          },
-          "refId": "A",
-          "target": "screeps.stats.$Users.$Shards.gcl.progress"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "GCL",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "P1D261A8554D2DA69"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1680,8 +1561,8 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Spawning",
-            "axisPlacement": "left",
+            "axisLabel": "",
+            "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -1691,11 +1572,8 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "stepBefore",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1711,12 +1589,12 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1724,46 +1602,17 @@
               }
             ]
           },
-          "unit": "bool_yes_no"
+          "unit": "short"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "averageLoad"
-            },
-            "properties": [
-              {
-                "id": "custom.lineInterpolation",
-                "value": "linear"
-              },
-              {
-                "id": "unit",
-                "value": "percentunit"
-              },
-              {
-                "id": "max",
-                "value": 1
-              },
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisLabel",
-                "value": "Load"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 9,
+        "h": 9,
+        "w": 6,
+        "x": 0,
         "y": 38
       },
-      "id": 10,
+      "id": 23,
       "links": [],
       "options": {
         "legend": {
@@ -1784,22 +1633,11 @@
             "type": "graphite",
             "uid": "P1D261A8554D2DA69"
           },
-          "refCount": 0,
           "refId": "A",
-          "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.spawning, 'isSpawning', false)"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "P1D261A8554D2DA69"
-          },
-          "hide": true,
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(movingAverage(screeps.stats.$Users.$Shards.roomSummary.$Rooms.spawns_spawning, '1hour'), 'averageLoad', false)"
+          "target": "screeps.stats.$Users.$Shards.gcl.progress"
         }
       ],
-      "title": "Spawner",
+      "title": "GCL",
       "type": "timeseries"
     },
     {
@@ -1845,7 +1683,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1858,10 +1697,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 8,
-        "x": 4,
-        "y": 44
+        "h": 9,
+        "w": 6,
+        "x": 6,
+        "y": 38
       },
       "id": 26,
       "links": [],
@@ -1889,6 +1728,146 @@
         }
       ],
       "title": "Credits",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "P1D261A8554D2DA69"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Spawning",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bool_yes_no"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "averageLoad"
+            },
+            "properties": [
+              {
+                "id": "custom.lineInterpolation",
+                "value": "linear"
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "max",
+                "value": 1
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "Load"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 10,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.spawning, 'isSpawning', false)"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(movingAverage(screeps.stats.$Users.$Shards.rooms.$Rooms.spawning, '1hour'), 'averageLoad', false)"
+        }
+      ],
+      "title": "Spawner",
       "type": "timeseries"
     }
   ],
@@ -2022,7 +2001,7 @@
   },
   "timezone": "browser",
   "title": "Screeps TS",
-  "uid": "qJYHN-aVk",
-  "version": 28,
+  "uid": "VZnBRIBVz",
+  "version": 6,
   "weekStart": ""
 }
