@@ -92,7 +92,10 @@
       "type": "gauge"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "graphite",
+        "uid": "P1D261A8554D2DA69"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -101,6 +104,7 @@
           },
           "decimals": 2,
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -168,9 +172,10 @@
             "type": "graphite",
             "uid": "P1D261A8554D2DA69"
           },
+          "hide": false,
           "refCount": 0,
-          "refId": "A",
-          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.intents, 'Intents', false)"
+          "refId": "Intents",
+          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.intents, 'Creep Intents', false)"
         },
         {
           "datasource": {
@@ -179,7 +184,7 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "B",
+          "refId": "Pathfinding",
           "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.pathfinding, 'Pathfinding', false)"
         },
         {
@@ -189,8 +194,8 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "C",
-          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.stats, 'Stats', false)"
+          "refId": "Find",
+          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.find, 'Find', false)"
         },
         {
           "datasource": {
@@ -198,9 +203,30 @@
             "uid": "P1D261A8554D2DA69"
           },
           "hide": false,
+          "refCount": 0,
+          "refId": "Spawner",
+          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.spawner, 'Spawner', false)"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "hide": true,
           "refCount": 0,
           "refId": "Hidden Max",
-          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.total, 'Max', false)"
+          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.total, 'Max', false)",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "hide": true,
+          "refCount": 0,
+          "refId": "Other",
+          "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.other, 'Other', false)"
         },
         {
           "datasource": {
@@ -209,13 +235,13 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "D",
-          "target": "alias(diff(screeps.stats.$Users.$Shards.userStats.usedCpu.total, sum(screeps.stats.$Users.$Shards.userStats.usedCpu.intents, screeps.stats.$Users.$Shards.userStats.usedCpu.pathfinding, screeps.stats.$Users.$Shards.userStats.usedCpu.stats)), 'Other', false)",
+          "refId": "OtherGrafana",
+          "target": "alias(diff(screeps.stats.$Users.$Shards.userStats.usedCpu.total, sum(screeps.stats.$Users.$Shards.userStats.usedCpu.intents, screeps.stats.$Users.$Shards.userStats.usedCpu.pathfinding, screeps.stats.$Users.$Shards.userStats.usedCpu.find, screeps.stats.$Users.$Shards.userStats.usedCpu.spawner)), 'Other', false)",
           "textEditor": true
         }
       ],
       "timeFrom": "1m",
-      "title": "CPU Usage Monitor",
+      "title": "CPU Usage",
       "transformations": [
         {
           "id": "configFromData",
@@ -394,6 +420,7 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "mappings": [],
           "min": 0,
           "thresholds": {
@@ -409,7 +436,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "none"
         },
         "overrides": [
           {
@@ -820,7 +847,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -851,6 +877,30 @@
                 "id": "color",
                 "value": {
                   "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Progress"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
                 }
               }
             ]
@@ -1133,6 +1183,8 @@
             }
           },
           "mappings": [],
+          "max": 1000000,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1970,8 +2022,8 @@
     ]
   },
   "time": {
-    "from": "now-30m",
-    "to": "now"
+    "from": "2023-03-18T04:43:18.496Z",
+    "to": "2023-03-28T15:25:42.857Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2002,6 +2054,6 @@
   "timezone": "browser",
   "title": "Screeps TS",
   "uid": "VZnBRIBVz",
-  "version": 6,
+  "version": 15,
   "weekStart": ""
 }
