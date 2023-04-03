@@ -212,7 +212,7 @@
             "type": "graphite",
             "uid": "P1D261A8554D2DA69"
           },
-          "hide": true,
+          "hide": false,
           "refCount": 0,
           "refId": "Hidden Max",
           "target": "alias(screeps.stats.$Users.$Shards.userStats.usedCpu.total, 'Max', false)",
@@ -806,7 +806,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "graphite",
+        "uid": "P1D261A8554D2DA69"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -882,6 +885,41 @@
             ]
           },
           {
+            "matcher": {
+              "id": "byName",
+              "options": "Time Left"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "m"
+              },
+              {
+                "id": "max",
+                "value": 50000
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
             "__systemRef": "hideSeriesFrom",
             "matcher": {
               "id": "byNames",
@@ -936,6 +974,17 @@
           },
           "hide": false,
           "refCount": 0,
+          "refId": "A",
+          "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.rclProgress, 'Progress', false)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "hide": false,
+          "refCount": 0,
           "refId": "B",
           "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.rclProgressTotal, 'Total', false)",
           "textEditor": false
@@ -945,10 +994,23 @@
             "type": "graphite",
             "uid": "P1D261A8554D2DA69"
           },
+          "hide": true,
           "refCount": 0,
-          "refId": "A",
-          "target": "alias(screeps.stats.$Users.$Shards.rooms.$Rooms.rclProgress, 'Progress', false)",
-          "textEditor": true
+          "refId": "C",
+          "target": "movingAverage(derivative(screeps.stats.Nielas.shard2.rooms.E28N14.rclProgress), '3h')",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "P1D261A8554D2DA69"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "alias(movingAverage(divideSeries(diff(#B, #A), #C), '3h'), 'Time Left', false)",
+          "targetFull": "alias(movingAverage(divideSeries(diff(alias(screeps.stats.$Users.$Shards.rooms.$Rooms.rclProgressTotal, 'Total', false), alias(screeps.stats.$Users.$Shards.rooms.$Rooms.rclProgress, 'Progress', false)), movingAverage(derivative(screeps.stats.Nielas.shard2.rooms.E28N14.rclProgress), '3h')), '3h'), 'Time Left', false)",
+          "textEditor": false
         }
       ],
       "title": "Controller Progress",
@@ -1189,8 +1251,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1288,8 +1349,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1377,8 +1437,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1466,8 +1525,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1556,8 +1614,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1645,8 +1702,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1735,8 +1791,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1831,8 +1886,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2022,8 +2076,8 @@
     ]
   },
   "time": {
-    "from": "2023-03-18T04:43:18.496Z",
-    "to": "2023-03-28T15:25:42.857Z"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2054,6 +2108,6 @@
   "timezone": "browser",
   "title": "Screeps TS",
   "uid": "VZnBRIBVz",
-  "version": 15,
+  "version": 19,
   "weekStart": ""
 }
