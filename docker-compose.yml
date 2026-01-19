@@ -39,7 +39,7 @@ services:
       - ./go-carbon-storage:/graphite
       - ./logs/goCarbon:/log
   carbon-api:
-    image: pieterbrandsen/carbonapi-0.15.6
+    image: ghcr.io/go-graphite/carbonapi:latest
     volumes:
       - ./grafanaConfig/carbonapi/carbonapi.yml:/etc/carbonapi.yml
       - ./grafanaConfig/carbonapi:/conf:ro
