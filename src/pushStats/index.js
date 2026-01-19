@@ -21,7 +21,7 @@ if (process.env.DISABLE_PUSHGATEWAY === 'true') {
 }
 console.log('Pushgateway enabled');
 
-const client = graphite.createClient('plaintext://carbon-relay-ng:2003/');
+const client = graphite.createClient('plaintext://go-carbon:2003/');
 const { combine, timestamp, prettyPrint } = format;
 const logger = createLogger({
   format: combine(
