@@ -41,13 +41,13 @@ services:
   carbon-api:
     image: ghcr.io/go-graphite/carbonapi:latest
     volumes:
-      - ./grafanaConfig/carbonapi/carbonapi.yml:/etc/carbonapi.yml
+      - ./grafanaConfig/carbonapi/carbonapi.yml:/etc/carbonapi/carbonapi.yaml
       - ./grafanaConfig/carbonapi:/conf:ro
       - ./logs/carbonApi:/log
     depends_on:
       - go-carbon
     healthcheck:
-      test: "curl -fsSL -o /dev/null http://go-carbon:8080/lb_check"
+      test: "curl -fsSL -o /dev/null http://localhost:8080/lb_check"
       interval: 10s
       timeout: 1s
       retries: 3
