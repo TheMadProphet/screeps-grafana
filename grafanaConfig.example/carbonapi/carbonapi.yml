@@ -14,7 +14,7 @@ listeners:
         # # OR
         # - address: "localhost:8081"
 # # OR
-listen: "carbon-api:8081"
+listen: ":8080"
 
 # Specify URL Prefix for all handlers
 prefix: ""
@@ -211,6 +211,6 @@ logger:
       encodingTime: "iso8601"
       encodingDuration: "seconds"
     - logger: ""
-      file: "log/carbonapi.log"
+      file: "/log/carbonapi.log"
       level: "info"
       encoding: "json"
