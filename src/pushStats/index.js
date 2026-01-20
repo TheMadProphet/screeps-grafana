@@ -51,7 +51,7 @@ class ManageStats {
 
   async handleUsers(type) {
     const getStatsFunctions = [];
-    users.forEach((user) => {
+    users.filter((u) => u.type === type).forEach((user) => {
       try {
         const shouldContinue = new Date().getSeconds() < 15
         && new Date().getMinutes() % user.shards.length !== 0;
