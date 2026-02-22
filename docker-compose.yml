@@ -57,6 +57,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafanaConfig/grafana:/etc/grafana
       - ./logs/grafana:/var/log/grafana
+      - ./dashboards:/etc/grafana/screeps-dashboards:ro
     ports:
       - 3000:3000
     # expose:
